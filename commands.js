@@ -21,7 +21,7 @@ db.bounties.insertOne({
   })
 
 // 2. Query for all bounties in the bounties collection
-db.bounties.find
+db.bounties.find()
 
 // 3. Insert many bounties at once using the given objects
 db.bounties.insertMany([
@@ -89,7 +89,7 @@ db.bounties.find({reward: {$gt:10000}})
 // 3. Query for all bounties, but exclude the client attribute from being shown
 
 // 4. Query for a Groundhog in the Woodlands
-
+db.bounties.find({location: "Woodlands"},{species: "Groundhog"})
 // Update and Delete
 // 1. Update the reward for Polarwind to 10000
 db.bounties.updateOne({name: "Polarwind"}, [{$set: {reward: 10000}}])
@@ -97,5 +97,6 @@ db.bounties.updateOne({name: "Polarwind"}, [{$set: {reward: 10000}}])
 db.bounties.deleteOne({name: "Lokinkajou"})
 
 // 3. Delete all bounties sent by Songbird
-
+db.bounties.deleteMany({client:"Songbird"})
 // 4. Update all captured statuses to true
+db.bounties.updateMany({captured:false},[{$set:{captured:true}}])
